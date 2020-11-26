@@ -1,15 +1,15 @@
--- Практическое задание по теме «Агрегация данных».
--- 1. Подсчитайте средний возраст пользователей в таблице users.
+п»ї-- РџСЂР°РєС‚РёС‡РµСЃРєРѕРµ Р·Р°РґР°РЅРёРµ РїРѕ С‚РµРјРµ В«РђРіСЂРµРіР°С†РёСЏ РґР°РЅРЅС‹С…В».
+-- 1. РџРѕРґСЃС‡РёС‚Р°Р№С‚Рµ СЃСЂРµРґРЅРёР№ РІРѕР·СЂР°СЃС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РІ С‚Р°Р±Р»РёС†Рµ users.
 
 SELECT * FROM users;
 SELECT ROUND(AVG(TIMESTAMPDIFF(YEAR, birthday_at, NOW())), 2) AS avg_age FROM users;
 
 
--- 2. Подсчитайте количество дней рождения, которые приходятся на каждый из дней недели. 
--- Следует учесть, что необходимы дни недели текущего года, а не года рождения.
+-- 2. РџРѕРґСЃС‡РёС‚Р°Р№С‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ СЂРѕР¶РґРµРЅРёСЏ, РєРѕС‚РѕСЂС‹Рµ РїСЂРёС…РѕРґСЏС‚СЃСЏ РЅР° РєР°Р¶РґС‹Р№ РёР· РґРЅРµР№ РЅРµРґРµР»Рё. 
+-- РЎР»РµРґСѓРµС‚ СѓС‡РµСЃС‚СЊ, С‡С‚Рѕ РЅРµРѕР±С…РѕРґРёРјС‹ РґРЅРё РЅРµРґРµР»Рё С‚РµРєСѓС‰РµРіРѕ РіРѕРґР°, Р° РЅРµ РіРѕРґР° СЂРѕР¶РґРµРЅРёСЏ.
 
 SELECT * FROM users;
--- Запросим дни недели день рождений, в год рождения и в текущий год.
+-- Р—Р°РїСЂРѕСЃРёРј РґРЅРё РЅРµРґРµР»Рё РґРµРЅСЊ СЂРѕР¶РґРµРЅРёР№, РІ РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ Рё РІ С‚РµРєСѓС‰РёР№ РіРѕРґ.
 SELECT 
   id, 
   name, 
@@ -18,7 +18,7 @@ SELECT
   DAYNAME(DATE_FORMAT(birthday_at, '2020-%m-%d')) AS daynames_2020 
 FROM 
   users;
--- Подсчитаем количество дней рождений, которые приходятся на каждый из дней недели текущего года.
+-- РџРѕРґСЃС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РґРЅРµР№ СЂРѕР¶РґРµРЅРёР№, РєРѕС‚РѕСЂС‹Рµ РїСЂРёС…РѕРґСЏС‚СЃСЏ РЅР° РєР°Р¶РґС‹Р№ РёР· РґРЅРµР№ РЅРµРґРµР»Рё С‚РµРєСѓС‰РµРіРѕ РіРѕРґР°.
 SELECT 
   DAYNAME(DATE_FORMAT(birthday_at, '2020-%m-%d')) AS daynames_2020,
   COUNT(*)
@@ -28,12 +28,12 @@ GROUP BY
   daynames_2020;
 
 
- -- 3. (по желанию) Подсчитайте произведение чисел в столбце таблицы.
+ -- 3. (РїРѕ Р¶РµР»Р°РЅРёСЋ) РџРѕРґСЃС‡РёС‚Р°Р№С‚Рµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ С‡РёСЃРµР» РІ СЃС‚РѕР»Р±С†Рµ С‚Р°Р±Р»РёС†С‹.
 
 DROP TABLE IF EXISTS task3;
 CREATE TABLE task3 (
   value INT UNSIGNED
-) COMMENT = 'Таблица для задания 3';
+) COMMENT = 'РўР°Р±Р»РёС†Р° РґР»СЏ Р·Р°РґР°РЅРёСЏ 3';
 SELECT * FROM task3;
 INSERT INTO 
   task3 (value) 
@@ -57,56 +57,56 @@ SHOW TABLES;
 DROP TABLE IF EXISTS catalogs;
 CREATE TABLE catalogs (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) COMMENT 'Название раздела',
+  name VARCHAR(255) COMMENT 'РќР°Р·РІР°РЅРёРµ СЂР°Р·РґРµР»Р°',
   UNIQUE unique_name(name(10))
-) COMMENT = 'Разделы интернет-магазина';
+) COMMENT = 'Р Р°Р·РґРµР»С‹ РёРЅС‚РµСЂРЅРµС‚-РјР°РіР°Р·РёРЅР°';
 
 INSERT INTO catalogs VALUES
-  (NULL, 'Процессоры'),
-  (NULL, 'Материнские платы'),
-  (NULL, 'Видеокарты'),
-  (NULL, 'Жесткие диски'),
-  (NULL, 'Оперативная память');
+  (NULL, 'РџСЂРѕС†РµСЃСЃРѕСЂС‹'),
+  (NULL, 'РњР°С‚РµСЂРёРЅСЃРєРёРµ РїР»Р°С‚С‹'),
+  (NULL, 'Р’РёРґРµРѕРєР°СЂС‚С‹'),
+  (NULL, 'Р–РµСЃС‚РєРёРµ РґРёСЃРєРё'),
+  (NULL, 'РћРїРµСЂР°С‚РёРІРЅР°СЏ РїР°РјСЏС‚СЊ');
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) COMMENT 'Имя покупателя',
-  birthday_at DATE COMMENT 'Дата рождения',
+  name VARCHAR(255) COMMENT 'РРјСЏ РїРѕРєСѓРїР°С‚РµР»СЏ',
+  birthday_at DATE COMMENT 'Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) COMMENT = 'Покупатели';
+) COMMENT = 'РџРѕРєСѓРїР°С‚РµР»Рё';
 
 INSERT INTO users (name, birthday_at) VALUES
-  ('Геннадий', '1990-10-05'),
-  ('Наталья', '1984-11-12'),
-  ('Александр', '1985-05-20'),
-  ('Сергей', '1988-02-14'),
-  ('Иван', '1998-01-12'),
-  ('Мария', '1992-08-29');
+  ('Р“РµРЅРЅР°РґРёР№', '1990-10-05'),
+  ('РќР°С‚Р°Р»СЊСЏ', '1984-11-12'),
+  ('РђР»РµРєСЃР°РЅРґСЂ', '1985-05-20'),
+  ('РЎРµСЂРіРµР№', '1988-02-14'),
+  ('РРІР°РЅ', '1998-01-12'),
+  ('РњР°СЂРёСЏ', '1992-08-29');
 
 DROP TABLE IF EXISTS products;
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) COMMENT 'Название',
-  description TEXT COMMENT 'Описание',
-  price DECIMAL (11,2) COMMENT 'Цена',
+  name VARCHAR(255) COMMENT 'РќР°Р·РІР°РЅРёРµ',
+  description TEXT COMMENT 'РћРїРёСЃР°РЅРёРµ',
+  price DECIMAL (11,2) COMMENT 'Р¦РµРЅР°',
   catalog_id INT UNSIGNED,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   KEY index_of_catalog_id (catalog_id)
-) COMMENT = 'Товарные позиции';
+) COMMENT = 'РўРѕРІР°СЂРЅС‹Рµ РїРѕР·РёС†РёРё';
 
 INSERT INTO products
   (name, description, price, catalog_id)
 VALUES
-  ('Intel Core i3-8100', 'Процессор для настольных персональных компьютеров, основанных на платформе Intel.', 7890.00, 1),
-  ('Intel Core i5-7400', 'Процессор для настольных персональных компьютеров, основанных на платформе Intel.', 12700.00, 1),
-  ('AMD FX-8320E', 'Процессор для настольных персональных компьютеров, основанных на платформе AMD.', 4780.00, 1),
-  ('AMD FX-8320', 'Процессор для настольных персональных компьютеров, основанных на платформе AMD.', 7120.00, 1),
-  ('ASUS ROG MAXIMUS X HERO', 'Материнская плата ASUS ROG MAXIMUS X HERO, Z370, Socket 1151-V2, DDR4, ATX', 19310.00, 2),
-  ('Gigabyte H310M S2H', 'Материнская плата Gigabyte H310M S2H, H310, Socket 1151-V2, DDR4, mATX', 4790.00, 2),
-  ('MSI B250M GAMING PRO', 'Материнская плата MSI B250M GAMING PRO, B250, Socket 1151, DDR4, mATX', 5060.00, 2);
+  ('Intel Core i3-8100', 'РџСЂРѕС†РµСЃСЃРѕСЂ РґР»СЏ РЅР°СЃС‚РѕР»СЊРЅС‹С… РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РєРѕРјРїСЊСЋС‚РµСЂРѕРІ, РѕСЃРЅРѕРІР°РЅРЅС‹С… РЅР° РїР»Р°С‚С„РѕСЂРјРµ Intel.', 7890.00, 1),
+  ('Intel Core i5-7400', 'РџСЂРѕС†РµСЃСЃРѕСЂ РґР»СЏ РЅР°СЃС‚РѕР»СЊРЅС‹С… РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РєРѕРјРїСЊСЋС‚РµСЂРѕРІ, РѕСЃРЅРѕРІР°РЅРЅС‹С… РЅР° РїР»Р°С‚С„РѕСЂРјРµ Intel.', 12700.00, 1),
+  ('AMD FX-8320E', 'РџСЂРѕС†РµСЃСЃРѕСЂ РґР»СЏ РЅР°СЃС‚РѕР»СЊРЅС‹С… РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РєРѕРјРїСЊСЋС‚РµСЂРѕРІ, РѕСЃРЅРѕРІР°РЅРЅС‹С… РЅР° РїР»Р°С‚С„РѕСЂРјРµ AMD.', 4780.00, 1),
+  ('AMD FX-8320', 'РџСЂРѕС†РµСЃСЃРѕСЂ РґР»СЏ РЅР°СЃС‚РѕР»СЊРЅС‹С… РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РєРѕРјРїСЊСЋС‚РµСЂРѕРІ, РѕСЃРЅРѕРІР°РЅРЅС‹С… РЅР° РїР»Р°С‚С„РѕСЂРјРµ AMD.', 7120.00, 1),
+  ('ASUS ROG MAXIMUS X HERO', 'РњР°С‚РµСЂРёРЅСЃРєР°СЏ РїР»Р°С‚Р° ASUS ROG MAXIMUS X HERO, Z370, Socket 1151-V2, DDR4, ATX', 19310.00, 2),
+  ('Gigabyte H310M S2H', 'РњР°С‚РµСЂРёРЅСЃРєР°СЏ РїР»Р°С‚Р° Gigabyte H310M S2H, H310, Socket 1151-V2, DDR4, mATX', 4790.00, 2),
+  ('MSI B250M GAMING PRO', 'РњР°С‚РµСЂРёРЅСЃРєР°СЏ РїР»Р°С‚Р° MSI B250M GAMING PRO, B250, Socket 1151, DDR4, mATX', 5060.00, 2);
 
 DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
@@ -115,46 +115,46 @@ CREATE TABLE orders (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   KEY index_of_user_id(user_id)
-) COMMENT = 'Заказы';
+) COMMENT = 'Р—Р°РєР°Р·С‹';
 
 DROP TABLE IF EXISTS orders_products;
 CREATE TABLE orders_products (
   id SERIAL PRIMARY KEY,
   order_id INT UNSIGNED,
   product_id INT UNSIGNED,
-  total INT UNSIGNED DEFAULT 1 COMMENT 'Количество заказанных товарных позиций',
+  total INT UNSIGNED DEFAULT 1 COMMENT 'РљРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РєР°Р·Р°РЅРЅС‹С… С‚РѕРІР°СЂРЅС‹С… РїРѕР·РёС†РёР№',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) COMMENT = 'Состав заказа';
+) COMMENT = 'РЎРѕСЃС‚Р°РІ Р·Р°РєР°Р·Р°';
 
 DROP TABLE IF EXISTS discounts;
 CREATE TABLE discounts (
   id SERIAL PRIMARY KEY,
   user_id INT UNSIGNED,
   product_id INT UNSIGNED,
-  discount FLOAT UNSIGNED COMMENT 'Величина скидки от 0.0 до 1.0',
+  discount FLOAT UNSIGNED COMMENT 'Р’РµР»РёС‡РёРЅР° СЃРєРёРґРєРё РѕС‚ 0.0 РґРѕ 1.0',
   started_at DATETIME,
   finished_at DATETIME,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   KEY index_of_user_id(user_id),
   KEY index_of_product_id(product_id)
-) COMMENT = 'Скидки';
+) COMMENT = 'РЎРєРёРґРєРё';
 
 DROP TABLE IF EXISTS storehouses;
 CREATE TABLE storehouses (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) COMMENT 'Название',
+  name VARCHAR(255) COMMENT 'РќР°Р·РІР°РЅРёРµ',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) COMMENT = 'Склады';
+) COMMENT = 'РЎРєР»Р°РґС‹';
 
 DROP TABLE IF EXISTS storehouses_products;
 CREATE TABLE storehouses_products (
   id SERIAL PRIMARY KEY,
   storehouse_id INT UNSIGNED,
   product_id INT UNSIGNED,
-  value INT UNSIGNED COMMENT 'Запас товарной позиции на складе',
+  value INT UNSIGNED COMMENT 'Р—Р°РїР°СЃ С‚РѕРІР°СЂРЅРѕР№ РїРѕР·РёС†РёРё РЅР° СЃРєР»Р°РґРµ',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) COMMENT = 'Запасы на складе';
+) COMMENT = 'Р—Р°РїР°СЃС‹ РЅР° СЃРєР»Р°РґРµ';
